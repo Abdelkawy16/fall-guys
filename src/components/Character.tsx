@@ -17,9 +17,9 @@ export function Character({
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
   const { actions } = useAnimations(animations, group);
-  useEffect(() => {
+  useEffect(():any => {
     actions[animation]?.reset().fadeIn(0.1).play();
-    actions[animation]?.fadeOut(0.1);
+    return () => actions[animation]?.fadeOut(0.1);
   }, [animation]);
 
   return (
